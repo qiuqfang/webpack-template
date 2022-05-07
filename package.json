@@ -1,5 +1,5 @@
 {
-  "name": "webpack-project",
+  "name": "webpack-template",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -59,7 +59,7 @@
     "webpack-merge": "^5.8.0"
   },
   "private": true,
-  "repository": "https://gitee.com/qiuqfang/webpack-project.git",
+  "repository": "https://github.com/qiuqfang/webpack-template.git",
   "lint-staged": {
     "*.js": [
       "eslint --fix"
