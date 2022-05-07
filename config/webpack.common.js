@@ -13,17 +13,19 @@ const CssMinimizerWebpackPlugin = require("css-minimizer-webpack-plugin"); // �
 
 const ESLintWebpackPlugin = require("eslint-webpack-plugin"); // 用于报告不符合规范的代码
 
+const appPath = "";
+
 module.exports = {
   entry: {
     page1: {
-      import: path.resolve(__dirname, "src/pages/page1/index.js"),
+      import: path.resolve(appPath, "src/pages/page1/index.js"),
     },
     page2: {
-      import: path.resolve(__dirname, "src/pages/page2/index.js"),
+      import: path.resolve(appPath, "src/pages/page2/index.js"),
     },
   },
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(appPath, "dist"),
     filename: "js/[name].js",
     // webpack5.20+ 功能:CleanWebpackPlugin
     clean: true,
@@ -86,7 +88,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "src"),
+      "@": path.resolve(appPath, "src"),
       vue$: "vue/dist/vue.min.js",
     },
     extensions: [".js", ".json", ".wasm"],
@@ -124,20 +126,20 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: "页面1", // 使用了 html-loader 无效 （<%= htmlWebpackPlugin.options.title %>）
       filename: "index.html", // 打包后的文件名
-      template: path.resolve(__dirname, "src/pages/page1/index.html"), // 打包的 html
+      template: path.resolve(appPath, "src/pages/page1/index.html"), // 打包的 html
       chunks: ["page1"], // 对于 entry 配置
     }),
     new HtmlWebpackPlugin({
       title: "页面2",
       filename: "page2.html",
-      template: path.resolve(__dirname, "src/pages/page2/index.html"),
+      template: path.resolve(appPath, "src/pages/page2/index.html"),
       chunks: ["page2"],
     }),
     new MiniCssExtractPlugin({
       filename: "css/[name].css",
     }),
     new PurgecssWebpackPlugin({
-      paths: glob.sync(`${path.resolve(__dirname, "src")}/**/*`, { nodir: true }),
+      paths: glob.sync(`${path.resolve(appPath, "src")}/**/*`, { nodir: true }),
     }),
     new ProgressBarWebpackPlugin({
       format: `:msg [:bar] ${chalk.green.bold(":percent")} (:elapsed s)`,

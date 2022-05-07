@@ -1,5 +1,5 @@
 import Vue from "@/main";
-import "./index.css";
+import "./index.less";
 
 new Vue({
   el: "#page",
