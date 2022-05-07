@@ -1,4 +1,4 @@
-# webpack-project
+# webpack-template
 
 # 前言
 
@@ -6,7 +6,7 @@
 
 # 项目介绍
 
-`webpack-project`是一个通过webpack、webpack-dev-server等搭建的前端脚手架项目，html-webpack-plugin、mini-css-extract-plugin、html-minimizer-webpack-plugin、css-minimizer-webpack-plugin、terser-webpack-plugin、compression-webpack-plugin插件的配置、提取与分离代码功能配置，开箱即用。
+`webpack-template`是一个通过webpack、webpack-dev-server等搭建的前端脚手架项目，html-webpack-plugin、mini-css-extract-plugin、html-minimizer-webpack-plugin、css-minimizer-webpack-plugin、terser-webpack-plugin、compression-webpack-plugin插件的配置、提取与分离代码功能配置，开箱即用。
 
 # 目录结构
 
@@ -37,11 +37,11 @@
 ```sh
 # 克隆项目
 
-git clone https://gitee.com/qiuqfang/webpack-project.git
+git clone https://github.com/qiuqfang/webpack-template.git
 
 # 进入项目目录
 
-cd webpack-project
+cd webpack-template
 
 # 安装依赖
 
