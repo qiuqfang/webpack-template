@@ -38,7 +38,7 @@ module.exports = merge(common, {
       new TerserWebpackPlugin({
         terserOptions: {
           compress: {
-            drop_console: true,
+            drop_console: true, // 删除 js 文件中所有的 console 命令
           },
         },
       }),

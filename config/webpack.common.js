@@ -16,13 +16,20 @@ const ESLintWebpackPlugin = require("eslint-webpack-plugin"); // 用于报告不
 const appPath = "";
 
 const setStyleLoader = (loader) => {
-  return [
-    // "style-loader",
-    MiniCssExtractPlugin.loader,
-    "css-loader",
-    "postcss-loader",
-    loader,
-  ];
+  return loader
+    ? [
+        // "style-loader",
+        MiniCssExtractPlugin.loader,
+        "css-loader",
+        "postcss-loader",
+        loader,
+      ]
+    : [
+        // "style-loader",
+        MiniCssExtractPlugin.loader,
+        "css-loader",
+        "postcss-loader",
+      ];
 };
 
 module.exports = {
@@ -42,34 +49,40 @@ module.exports = {
   },
   module: {
     rules: [
-      // 解析html文件
       {
-        test: /\.(html|htm)$/i,
-        use: ["html-loader"],
-      },
-      // 解析css文件
-      {
-        test: /\.css$/i,
-        use: setStyleLoader(),
-      },
-      // 解析s[ac]ss文件
-      {
-        test: /\.s[ac]ss$/i,
-        use: setStyleLoader("sass-loader"),
-      },
-      // 解析less文件
-      {
-        test: /\.less$/i,
-        use: setStyleLoader("less-loader"),
-      },
-      {
-        test: /\.styl$/i,
-        use: setStyleLoader("stylus-loader"),
-      },
-      {
-        test: /\.js$/,
-        exclude: /(node_modules|lib)/,
-        use: ["babel-loader"],
+        // 当前文件匹配了规则后，则不在继续往下匹配
+        oneOf: [
+          // 解析html文件
+          {
+            test: /\.(html|htm)$/i,
+            use: ["html-loader"],
+          },
+          // 解析css文件
+          {
+            test: /\.css$/i,
+            use: setStyleLoader(),
+          },
+          // 解析s[ac]ss文件
+          {
+            test: /\.s[ac]ss$/i,
+            use: setStyleLoader("sass-loader"),
+          },
+          // 解析less文件
+          {
+            test: /\.less$/i,
+            use: setStyleLoader("less-loader"),
+          },
+          // 解析stylus文件
+          {
+            test: /\.styl$/i,
+            use: setStyleLoader("stylus-loader"),
+          },
+          {
+            test: /\.js$/,
+            exclude: /(node_modules|lib)/,
+            use: ["babel-loader"],
+          },
+        ],
       },
     ],
   },
