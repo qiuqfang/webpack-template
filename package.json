@@ -69,10 +69,8 @@
     "src/**/*.{js,jsx,ts,tsx}": [
       "eslint --fix"
     ],
-    "src/**/*": [
-      "prettier --write"
-    ],
     "src/**/*.{css,less,scss,sass,styl}": [
+      "prettier --write",
       "stylelint --fix"
     ]
   }
