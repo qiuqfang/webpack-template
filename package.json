@@ -7,7 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "webpack serve --config config/webpack.dev.js",
     "build": "webpack --config config/webpack.prod.js",
-    "lint": "eslint . --fix",
+    "lint:prettier": "prettier --write .",
+    "lint:eslint": "eslint . --fix",
+    "lint:stylelint": "prettier --write .",
+    "lint": "npm run lint:prettier && npm run lint:eslint && npm run lint:stylelint",
     "prepare": "husky install"
   },
   "keywords": [],
