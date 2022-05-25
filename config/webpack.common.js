@@ -13,6 +13,8 @@ const CssMinimizerWebpackPlugin = require("css-minimizer-webpack-plugin"); // �
 
 const ESLintWebpackPlugin = require("eslint-webpack-plugin"); // 用于报告不符合规范的代码
 
+const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin"); // 压缩图片
+
 const appPath = "";
 
 const getStyleLoaders = (loader) => {
@@ -90,7 +92,37 @@ module.exports = {
   },
   optimization: {
     minimize: true, // 最小化bundle
-    minimizer: [new HtmlMinimizerWebpackPlugin(), new CssMinimizerWebpackPlugin()],
+    minimizer: [
+      new HtmlMinimizerWebpackPlugin(),
+      new CssMinimizerWebpackPlugin(), // 压缩图片
+      new ImageMinimizerPlugin({
+        minimizer: {
+          implementation: ImageMinimizerPlugin.imageminGenerate,
+          options: {
+            plugins: [
+              ["gifsicle", { interlaced: true }],
+              ["jpegtran", { progressive: true }],
+              ["optipng", { optimizationLevel: 5 }],
+              [
+                "svgo",
+                {
+                  plugins: [
+                    "preset-default",
+                    "prefixIds",
+                    {
+                      name: "sortAttrs",
+                      params: {
+                        xmlnsOrder: "alphabetical",
+                      },
+                    },
+                  ],
+                },
+              ],
+            ],
+          },
+        },
+      }),
+    ],
     splitChunks: {
       chunks: "initial",
       cacheGroups: {
