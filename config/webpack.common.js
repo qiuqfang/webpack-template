@@ -15,21 +15,14 @@ const ESLintWebpackPlugin = require("eslint-webpack-plugin"); // 用于报告不
 
 const appPath = "";
 
-const setStyleLoader = (loader) => {
-  return loader
-    ? [
-        // "style-loader",
-        MiniCssExtractPlugin.loader,
-        "css-loader",
-        "postcss-loader",
-        loader,
-      ]
-    : [
-        // "style-loader",
-        MiniCssExtractPlugin.loader,
-        "css-loader",
-        "postcss-loader",
-      ];
+const getStyleLoaders = (loader) => {
+  return [
+    // "style-loader",
+    MiniCssExtractPlugin.loader,
+    "css-loader",
+    "postcss-loader",
+    loader,
+  ].filter(Boolean);
 };
 
 module.exports = {
@@ -60,22 +53,22 @@ module.exports = {
           // 解析css文件
           {
             test: /\.css$/i,
-            use: setStyleLoader(),
+            use: getStyleLoaders(),
           },
           // 解析s[ac]ss文件
           {
             test: /\.s[ac]ss$/i,
-            use: setStyleLoader("sass-loader"),
+            use: getStyleLoaders("sass-loader"),
           },
           // 解析less文件
           {
             test: /\.less$/i,
-            use: setStyleLoader("less-loader"),
+            use: getStyleLoaders("less-loader"),
           },
           // 解析stylus文件
           {
             test: /\.styl$/i,
-            use: setStyleLoader("stylus-loader"),
+            use: getStyleLoaders("stylus-loader"),
           },
           {
             test: /\.js$/,
