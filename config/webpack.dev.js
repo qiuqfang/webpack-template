@@ -35,6 +35,6 @@ module.exports = merge(common, {
     compress: true, // 开启gzip压缩
     open: true,
     port: 9000,
-    hot: true,
+    hot: true, // 热更新
   },
 });
