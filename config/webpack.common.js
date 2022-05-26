@@ -29,11 +29,11 @@ const getStyleLoaders = (loader) => {
 
 module.exports = {
   entry: {
-    page1: {
-      import: path.resolve(appPath, "src/pages/page1/index.js"),
+    login: {
+      import: path.resolve(appPath, "src/pages/login/index.js"),
     },
-    page2: {
-      import: path.resolve(appPath, "src/pages/page2/index.js"),
+    home: {
+      import: path.resolve(appPath, "src/pages/home/index.js"),
     },
   },
   output: {
@@ -149,16 +149,16 @@ module.exports = {
   plugins: [
     new ESLintWebpackPlugin({}),
     new HtmlWebpackPlugin({
-      title: "页面1", // 使用了 html-loader 无效 （<%= htmlWebpackPlugin.options.title %>）
-      filename: "index.html", // 打包后的文件名
-      template: path.resolve(appPath, "src/pages/page1/index.html"), // 打包的 html
-      chunks: ["page1"], // 对于 entry 配置
+      title: "登录页", // 使用了 html-loader 无效 （<%= htmlWebpackPlugin.options.title %>）
+      filename: "login.html", // 打包后的文件名
+      template: path.resolve(appPath, "src/pages/login/index.html"), // 打包的 html
+      chunks: ["login"], // 对于 entry 配置
     }),
     new HtmlWebpackPlugin({
-      title: "页面2",
-      filename: "page2.html",
-      template: path.resolve(appPath, "src/pages/page2/index.html"),
-      chunks: ["page2"],
+      title: "首页",
+      filename: "index.html",
+      template: path.resolve(appPath, "src/pages/home/index.html"),
+      chunks: ["home"],
     }),
     new MiniCssExtractPlugin({
       filename: "css/[name].css",

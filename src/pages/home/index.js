@@ -2,8 +2,8 @@ import Vue from "@/main.js";
 import "./index.css";
 
 new Vue({
-  el: "#page",
+  el: "#home",
   data: {
-    title: "页面2",
+    title: "首页",
   },
 });

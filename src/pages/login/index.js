@@ -2,8 +2,8 @@ import Vue from "@/main";
 import "./index.less";
 
 new Vue({
-  el: "#page",
+  el: "#login",
   data: {
-    title: "页面1",
+    title: "登陆页",
   },
 });
