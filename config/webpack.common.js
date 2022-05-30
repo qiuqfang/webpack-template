@@ -75,7 +75,16 @@ module.exports = {
           {
             test: /\.js$/,
             exclude: /(node_modules|lib)/,
-            use: ["babel-loader"],
+            use: [
+              {
+                loader: "babel-loader",
+                options: {
+                  cacheDirectory: true, // 开启babel编译缓存
+                  cacheCompression: false, // 缓存文件不要压缩
+                  plugins: ["@babel/plugin-transform-runtime"], // 减少代码体积
+                },
+              },
+            ],
           },
         ],
       },
@@ -95,6 +104,7 @@ module.exports = {
     minimizer: [
       new HtmlMinimizerWebpackPlugin(),
       new CssMinimizerWebpackPlugin(), // 压缩图片
+      // 无损压缩
       new ImageMinimizerPlugin({
         minimizer: {
           implementation: ImageMinimizerPlugin.imageminGenerate,
@@ -147,7 +157,12 @@ module.exports = {
     runtimeChunk: "single", // 值single将创建一个运行时文件，用于共享所有生成的块。值multiple向每个入口点创建一个运行时文件
   },
   plugins: [
-    new ESLintWebpackPlugin({}),
+    new ESLintWebpackPlugin({
+      // 开启缓存
+      cache: true,
+      // 缓存目录
+      cacheLocation: path.resolve(__dirname, "../node_modules/.cache/.eslintcache"),
+    }),
     new HtmlWebpackPlugin({
       title: "登录页", // 使用了 html-loader 无效 （<%= htmlWebpackPlugin.options.title %>）
       filename: "login.html", // 打包后的文件名
